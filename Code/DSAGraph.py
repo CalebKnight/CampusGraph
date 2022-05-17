@@ -131,14 +131,12 @@ class DSAGraph:
                 if(w.getVisited() == False):
                     if(w.getLabel() == target):
                         T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
-                        return T
                     else:
                         T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
                         w.setVisited()
                         S.push(w)
-                    break
             v = S.pop()
-        return None
+        return T
 
     def clearVisited(self):
         for currentNode in self.verticesList:

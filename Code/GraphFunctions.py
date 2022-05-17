@@ -10,6 +10,7 @@
 # Save network
 import os
 import numpy as np
+from DSAQueue import DSAQueue
 from file import File
 from menu import *
 from CampusRoute import CampusRoute
@@ -17,6 +18,7 @@ class GraphFunctions:
     def __init__(self):
         self.file = None
         self.graph = None
+        self.routes = np.zeros(0, dtype=object)
 
     def loadFile(self):
         print("Enter the name of the file you would like to load:")
@@ -92,33 +94,76 @@ class GraphFunctions:
     def enterJourneyDetails():
         pass
 
-    def generateRoutes(self):
-        pass
+    def generateRoutes(self, startPoint, target, blocked):
+        print("\nPossible targets and start points are:\n")
+        for vertex in self.graph.verticesList:
+            print(vertex.getLabel())
+        if startPoint == None:
+            startPoint = getInput("start point", "route", "generate")
+        if target == None:
+            target = getInput("target point", "route", "generate")
+        if blocked == None:
+            blocked = isBlockedMenu()
+        
+        idx = 0
+        routes = np.zeros(self.graph.getEdgeCount(), dtype=object)
+        visited = self.graph.depthFirstSearch(startPoint, target)
+        currentNode = visited.queue.tail
+        while currentNode != None:
+            # If the current node points to the target edge then we have found a path that follows the main route
+            if(currentNode.getValue().getTo() == target):
+                if self._isPathBlocked(currentNode.getValue(), blocked) == False:                  
+                    routes[idx] = currentNode.getValue()
+                    target = currentNode.getValue().getFrom()
+                    idx += 1
+            currentNode = currentNode.getTail()
+        self.routes = self._invertArray(routes)
+        self.routes = self._shuffleArrayDown(self.routes)
+
+    def _isPathBlocked(self, path, blocked):
+        if blocked == 1:
+            if path.getValue().security != "S:":
+                return True
+        elif blocked == 2:
+            if path.getValue().barriers != "B:":
+                return True
+        elif blocked == 3:
+            if path.getValue().barriers != "B:" or path.getValue().security != "S:":
+                return True
+        return False
+            
+    def _invertArray(self, array):
+        invertedArray = np.zeros(len(array), dtype=object)
+        for i in range(len(array)):
+            invertedArray[i] = array[len(array) - i - 1]
+        return(invertedArray)
+
+    def _shuffleArrayDown(self, array):
+        shuffledArray = np.zeros(len(array), dtype=object)
+        shuffleIdx = 0
+        for i in array:
+            if i != 0:
+                shuffledArray[shuffleIdx] = i
+                shuffleIdx += 1
+        return(shuffledArray)
+
 
     def displayRoutes(self):
-        self.generateRoutes()
-        pass
+        if len(self.routes) == 0:
+            self.generateRoutes()
+        for path in self.routes:
+            if path != None and path != 0:
+                print("\nPath\n")
+                print(path.getLabel().replace(",", " -> "))
 
     def saveFile(self):
         choice = SaveMenu()
         if choice == "1":
             self.file.writeFileFromGraph(self.graph)
-    
-    
-    
-
-    # def createCampusRoute(self, operation):
-    #     fromBuilding = getInput("label", "first building", operation)
-    #     toBuilding = getInput("label", "second building", operation)
-    #     distance = getInput("distance", "route", operation)
-    #     security = getInput("security", "route", operation)
-    #     barriers = getInput("barriers", "route", operation)
-    #     campusRoute = CampusRoute(fromBuilding, toBuilding, distance, security, barriers)
-    #     return(campusRoute)
 
 
 def getInput(lookingFor, type, operation):
-    print("Enter the {} of the {} you would like to {}:").format(lookingFor, type, operation)
+    print("Enter the {} of the {} you would like to {}:".format(lookingFor, type, operation))
     value = input()
     return(value)
         

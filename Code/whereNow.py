@@ -11,27 +11,27 @@ def main():
     functions = GraphFunctions()
     functions.graph = file.fileContent
     choice = ""
-    while(choice != "0"):
+    while(choice != 0):
         choice = MainMenu()
-        if choice == "1":
+        if choice == 1:
            functions.loadFile()
-        elif choice == "2":
+        elif choice == 2:
             functions.nodeOperations()
-        elif choice == "3":
+        elif choice == 3:
             functions.edgeOperations()
-        elif choice == "4":
+        elif choice == 4:
             functions.editCampusRoute()
-        elif choice == "5":
+        elif choice == 5:
             functions.displayGraph()
-        elif choice == "6":
+        elif choice == 6:
             functions.DisplayWorld()
-        elif choice == "7":
+        elif choice == 7:
             functions.enterJourneyDetails()
-        elif choice == "8":
-            functions.generateRoutes()
-        elif choice == "9":
+        elif choice == 8:
+            functions.generateRoutes(None, None, None)
+        elif choice == 9:
             functions.displayRoutes()
-        elif choice == "10":
+        elif choice == 10:
             functions.saveFile()
             pass
         else:

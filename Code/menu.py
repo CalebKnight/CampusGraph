@@ -3,6 +3,7 @@ def Menu(options):
     for i in range(len(options)):
         print(i+1, ":", options[i])
     print("\n0: Exit\n")
+    choice = None
     while choice not in range(len(options)):
         try:
             choice = int(input("\nEnter your choice: "))
@@ -53,6 +54,16 @@ def EdgeMenu():
     ,"Update edge"
     ], dtype=object)
     print("\nHow would you like to edit the edge/s?\n")
+    return(Menu(options))
+
+def isBlockedMenu():
+    options = np.array([
+        "Security",
+        "Barriers",
+        "Both",
+        "None"
+    ], dtype=object)
+    print("\nIs your traversal blocked by any of these?\n")
     return(Menu(options))
 
 def SaveMenu():

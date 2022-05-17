@@ -3,7 +3,7 @@ sys.path.append("../CampusGraphs/Code")
 from DSAGraph import *
 from unittest import *
 
-class DSAGraphUnitTest(TestCase):
+class UnitTestDSAGraph(TestCase):
     def __init__(self):
         super().__init__()
         self.graph = DSAGraph()
