@@ -35,8 +35,6 @@ class DSAGraphUnitTest(TestCase):
         print("TestUpdateVertex passed")
         self.testUpdateEdge()
         print("TestUpdateEdge passed")
-        self.testBreadthFirstSearch()
-        print("TestBreadthFirstSearch passed")
         self.testDepthFirstSearch()
         print("TestDepthFirstSearch passed")
         
@@ -140,18 +138,23 @@ class DSAGraphUnitTest(TestCase):
         self.graph.addEdge("E", "B", "E,B", 1)
         self.graph.addEdge("E", "C", "E,C", 1)
 
-
-    def testBreadthFirstSearch(self):
-        self.addValuesForSearch()
-        visited = self.graph.breadthFirstSearch("A")
-        for v in visited.queue:
-            print(v.getLabel(), "this is the visited")
-
     def testDepthFirstSearch(self):
         self.addValuesForSearch()
-        visited = self.graph.depthFirstSearch("A")
-        for v in visited.queue:
-            print(v.getLabel(), "this is the visited")
+        target = "D"
+        routes = np.zeros(self.graph.getEdgeCount() * self.graph.getEdgeCount(), dtype=object)
+        # visited = self.graph.depthFirstSearch("A")
+        idx = 0
+        for vertex in self.graph.verticesList:
+            visited = self.graph.depthFirstSearch(vertex.getLabel(), target)
+            if visited != None:
+                print(visited)
+                routes[idx] = visited
+                idx += 1
+        for route in routes:
+            if route != None and route != 0:
+                print("\nPath\n")
+                for path in route.queue:
+                    print(path.getLabel())
     
 
     

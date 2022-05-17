@@ -119,23 +119,8 @@ class DSAGraph:
             print(labels[idx], end="\t")
             print(i)
     
-    def breadthFirstSearch(self, label):
-        T = DSAQueue()
-        Q = DSAQueue()
-        v = self.getVertex(label)
-        v.setVisited()
-        Q.enqueue(v)
-        while(not Q.isEmpty()):
-            v = Q.dequeue()
-            for w in v.getAdjacent():
-                if(w.getVisited() == False):
-                    T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
-                    w.setVisited()
-                    Q.enqueue(w)
-        return T
-                    
-
-    def depthFirstSearch(self, label):
+    def depthFirstSearch(self, label, target):
+        self.clearVisited()
         T = DSAQueue()
         S = DSAStack()
         v = self.getVertex(label)
@@ -144,12 +129,20 @@ class DSAGraph:
         while(not S.isEmpty()):
             for w in v.getAdjacent():
                 if(w.getVisited() == False):
-                    T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
-                    w.setVisited()
-                    S.push(w)
+                    if(w.getLabel() == target):
+                        T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
+                        return T
+                    else:
+                        T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
+                        w.setVisited()
+                        S.push(w)
                     break
             v = S.pop()
-        return T
+        return None
+
+    def clearVisited(self):
+        for currentNode in self.verticesList:
+            currentNode.clearVisited()
         
         
 
