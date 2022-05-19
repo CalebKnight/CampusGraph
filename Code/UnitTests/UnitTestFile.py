@@ -53,6 +53,7 @@ class UnitTestFile(TestCase):
     def testReadJourney(self):
         self.file = File("../CampusGraphs/Code/Data/Journey.txt")
         self.file.readJourney()
+        self.assertEqual(self.file.journey.fromBuilding, "314.221.lab")
        
 
 

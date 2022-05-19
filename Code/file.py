@@ -52,8 +52,8 @@ class File:
         journey.fromBuilding = values[0]
         journey.toBuilding = values[1]
         journey.distance = values[2]
-        journey.security = values[3]
-        journey.barriers = values[4]
+        journey.security = values[4]
+        journey.barriers = values[3]
         self.journey = journey
         
         

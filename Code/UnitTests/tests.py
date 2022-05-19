@@ -5,9 +5,9 @@ from UnitTestGraphFunctions import *
 
 def main():
     print("Test Harnesses for: UnitTests\n")
-    # UnitTestGraphFunctions().runAllTests()
-    # UnitTestDSAGraph().runAllTests()
-    # CampusRouteUnitTest.runAllTests(CampusRouteUnitTest())
+    UnitTestGraphFunctions().runAllTests()
+    UnitTestDSAGraph().runAllTests()
+    CampusRouteUnitTest.runAllTests(CampusRouteUnitTest())
     UnitTestFile.runAllTests(UnitTestFile())
     
 

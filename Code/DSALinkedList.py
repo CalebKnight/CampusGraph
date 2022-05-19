@@ -105,7 +105,6 @@ class DSALinkedList(DSALinkedListIterator):
         else:
             i = 0
             for currentNode in self:
-                print(currentNode)
                 i+=1
         
         return i

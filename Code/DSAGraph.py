@@ -123,12 +123,9 @@ class DSAGraph:
         while(not S.isEmpty()):
             for w in v.getAdjacent():
                 if(w.getVisited() == False):
-                    if(w.getLabel() == target):
-                        T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
-                    else:
-                        T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
-                        w.setVisited()
-                        S.push(w)
+                    T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
+                    w.setVisited()
+                    S.push(w)
             v = S.pop()
         return T
 

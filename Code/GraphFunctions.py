@@ -19,10 +19,10 @@ class GraphFunctions:
         self.file = None
         self.graph = None
         self.routes = np.zeros(0, dtype=object)
-        journey = None
+        self.journey = None
 
     def loadFile(self):
-        print("Enter the name of the file you would like to load:")
+        print("Enter the name of the file you would like to load for a graph:")
         fileName = input()
         while not os.path.isfile("Code/{}".format(fileName)):
             print("File not found. Please try again.")
@@ -30,6 +30,13 @@ class GraphFunctions:
         file = File("Code/{}".format(fileName))
         file.readGraph()
         self.graph = file.graph
+        print("Enter the name of the file you would like to load for a journey:")
+        fileName = input()
+        while not os.path.isfile("Code/{}".format(fileName)):
+            print("File not found. Please try again.")
+            fileName = input()
+        file = File("Code/{}".format(fileName))
+        file.readJourney()
         self.journey = file.journey
         return(file)
 
@@ -107,23 +114,32 @@ class GraphFunctions:
         if self.journey == None:
             self.enterJourneyDetails()
         startPoint, target, barriers = self.journey.fromBuilding, self.journey.toBuilding, self.journey.barriers
-        idx = 0
         routes = np.zeros(self.graph.getEdgeCount(), dtype=object)
         visited = self.graph.depthFirstSearch(startPoint, target)
+        # for node in visited.queue:
+        #     print(node.getLabel())
+        routes[0] = self.generateRoute(visited, target, barriers)
+        self.routes = routes
+
+    def generateRoute(self, visited, target, barriers ):
+        route = np.zeros(self.graph.getEdgeCount(), dtype=object)
         currentNode = visited.queue.tail
+        idx = 0
         while currentNode != None:
             # If the current node points to the target edge then we have found a path that follows the main route
             if(currentNode.getValue().getTo() == target):
-                if self._isPathBlocked(currentNode.getValue().getValue(), barriers) == False or len(barriers) < 2:                  
-                    routes[idx] = currentNode.getValue()
+                if self._isPathBlocked(currentNode.getValue(), barriers) == False:                
+                    route[idx] = currentNode.getValue()
                     target = currentNode.getValue().getFrom()
                     idx += 1
             currentNode = currentNode.getTail()
-        self.routes = self._invertArray(routes)
-        self.routes = self._shuffleArrayDown(self.routes)
+        route = self._invertArray(route)
+        route = self._shuffleArrayDown(route)
+        return route
+
 
     def _isPathBlocked(self, path, barriers):
-        if path.barriers == barriers or barriers in path.barriers:
+        if len(barriers) > 2 and (path.barriers == barriers or barriers in path.barriers):
             return True
         return False
             
@@ -146,10 +162,13 @@ class GraphFunctions:
     def displayRoutes(self):
         if len(self.routes) == 0:
             self.generateRoutes()
-        for path in self.routes:
-            if path != None and path != 0:
-                print("\nPath\n")
-                print(path.getLabel().replace(",", " -> "))
+        for route in self.routes:
+            # this is one of the only ways to check if int without firing an error at this stage as route is both an indexable array and a integer value
+            if type(route) != int:
+                for idx, path in  enumerate(route):
+                    if path != 0:
+                        print("\nStep {}\n".format(idx + 1))
+                        print(path.getLabel().replace(",", " -> "))
 
     def saveFile(self):
         choice = SaveMenu()
