@@ -1,0 +1,10 @@
++ getLabel(): String
++ getValue(): Object
++ getFrom(): String
++ getTo(): String
++ setValue(Object): void
++ setLabel(String): void
++ setFrom(String): void
++ setTo(String): void
++ isDirected(): Boolean
++ toString(): String

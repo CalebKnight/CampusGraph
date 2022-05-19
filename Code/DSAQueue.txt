@@ -1,0 +1,4 @@
++ isEmpty(): Boolean
++ peek(): Object
++ enqueue(Object): void
++ dequeue(): void

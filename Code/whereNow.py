@@ -7,9 +7,9 @@ def main():
     print("Welcome to the Where Now program!")
     
     file = File("Code/map.txt")
-    file.readFile()
+    file.readGraph()
     functions = GraphFunctions()
-    functions.graph = file.fileContent
+    functions.graph = file.graph
     choice = ""
     while(choice != 0):
         choice = MainMenu()
@@ -28,7 +28,7 @@ def main():
         elif choice == 7:
             functions.enterJourneyDetails()
         elif choice == 8:
-            functions.generateRoutes(None, None, None)
+            functions.generateRoutes()
         elif choice == 9:
             functions.displayRoutes()
         elif choice == 10:

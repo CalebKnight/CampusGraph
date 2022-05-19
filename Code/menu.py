@@ -56,15 +56,7 @@ def EdgeMenu():
     print("\nHow would you like to edit the edge/s?\n")
     return(Menu(options))
 
-def isBlockedMenu():
-    options = np.array([
-        "Security",
-        "Barriers",
-        "Both",
-        "None"
-    ], dtype=object)
-    print("\nIs your traversal blocked by any of these?\n")
-    return(Menu(options))
+
 
 def SaveMenu():
     options = np.array([

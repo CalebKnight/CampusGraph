@@ -49,12 +49,6 @@ class DSAGraph:
             if(currentNode.getLabel() == label):
                 return currentNode.getAdjacent()
         return None
-    def getAdjacentEdge(self, label):
-        edge = self.getEdge(label)
-        for currentNode in self.edges:
-            if(currentNode.getFrom() == edge.getFrom()):
-                return currentNode
-        return None
     
     def removeVertex(self, label):
         for vertex in self.verticesList:
@@ -92,11 +86,11 @@ class DSAGraph:
                 vertex.setLabel(label)
                 return vertex
             
-    def displayAsList(self):
-        for currentNode in self.verticesList:
-            print(currentNode.toString())
-        for currentNode in self.edges:
-            print(currentNode.getLabel())
+    # def displayAsList(self):
+    #     for currentNode in self.verticesList:
+    #         print(currentNode.toString())
+    #     for currentNode in self.edges:
+    #         print(currentNode.getLabel())
     def displayAsMatrix(self):
         matrix = np.zeros((self.getVertexCount(), self.getVertexCount()))
         labels = np.zeros(self.getVertexCount(), dtype=object)

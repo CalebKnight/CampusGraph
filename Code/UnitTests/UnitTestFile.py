@@ -13,10 +13,12 @@ class UnitTestFile(TestCase):
         self.graph = None
 
     def runAllTests(self):
-        self.testReadFile()
+        self.testReadGraph()
         print("TestReadFile passed")
         self.testWriteFile()
         print("TestWriteFile passed")
+        self.testReadJourney()
+        print("TestReadJourney passed")
         
     def addGraphValues(self):
         self.graph.addVertex("A")
@@ -35,18 +37,23 @@ class UnitTestFile(TestCase):
         self.file = File("../CampusGraphs/Code/Data/test.txt")
         self.file.writeFileFromGraph(self.graph)
         self.file = File("../CampusGraphs/Code/Data/test.txt")
-        self.file.readFile()
-        self.assertEqual(self.graph.edges.peekFirst().getFrom(), self.file.fileContent.edges.peekFirst().getFrom())
-        self.assertEqual(self.graph.edges.peekFirst().getTo(), self.file.fileContent.edges.peekFirst().getTo())
-        self.assertEqual(self.graph.edges.peekFirst().getValue().distance, self.file.fileContent.edges.peekFirst().getValue().distance)
+        self.file.readGraph()
+        self.assertEqual(self.graph.edges.peekFirst().getFrom(), self.file.graph.edges.peekFirst().getFrom())
+        self.assertEqual(self.graph.edges.peekFirst().getTo(), self.file.graph.edges.peekFirst().getTo())
+        # self.assertEqual(self.graph.edges.peekFirst().getValue().distance, self.file.graph.edges.peekFirst().getValue().distance)
         
-    def testReadFile(self):
+    def testReadGraph(self):
         self.createGraph()
         self.file = File("../CampusGraphs/Code/Data/test.txt")
-        self.file.readFile()
-        self.assertEqual(self.graph.edges.peekFirst().getFrom(), self.file.fileContent.edges.peekFirst().getFrom())
-        self.assertEqual(self.graph.edges.peekFirst().getTo(), self.file.fileContent.edges.peekFirst().getTo())
-        self.assertEqual(self.graph.edges.peekFirst().getValue().distance, self.file.fileContent.edges.peekFirst().getValue().distance)
+        self.file.readGraph()
+        self.assertEqual(self.graph.edges.peekFirst().getFrom(), self.file.graph.edges.peekFirst().getFrom())
+        self.assertEqual(self.graph.edges.peekFirst().getTo(), self.file.graph.edges.peekFirst().getTo())
+        # self.assertEqual(self.graph.edges.peekFirst().getValue().distance, self.file.graph.edges.peekFirst().getValue().distance)
+
+    def testReadJourney(self):
+        self.file = File("../CampusGraphs/Code/Data/Journey.txt")
+        self.file.readJourney()
+       
 
 
 

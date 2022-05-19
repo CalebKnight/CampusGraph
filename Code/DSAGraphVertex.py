@@ -13,8 +13,6 @@ class DSAGraphVertex:
         return self.links
     def addAdjacent(self, label):
         self.links.insertLast(label)
-    def addEdge(self, edge):
-        self.links.insertLast(edge)
     def setLabel(self, label):
         self.label = label
     def setValue(self, value):

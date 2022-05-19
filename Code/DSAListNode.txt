@@ -1,0 +1,6 @@
++ getValue(): Object
++ setValue(Object): void
++ getNext(): Object(Node)
++ setNext(Object(Node)): void
++ getTail(): Object(Node)
++ setTail(Object(Node)): void

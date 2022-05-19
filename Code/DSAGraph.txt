@@ -1,0 +1,17 @@
++ addVertex(String, Object): void
++ addEdge(String, String, String, Object): void
++ hasVertex(String): Boolean
++ getVertexCount(self): Int
++ getEdgeCount(self): Int
++ getVertex(String): Object(Vertex)
++ getEdge(String): Object(Edge)
++ getAdjacent(String): Object(LinkedList)
++ removeVertex(String): void
++ removeEdge(String): void
++ updateVertex(String, String): void
++ updateEdge(String, String, Object): void
++ _updateVertexInEdge(String): Object(Vertex)
++ displayAsList(): void
++ displayAsMatrix(): void
++ depthFirstSearch(String, String): Object(Queue)
++ clearVisited(): void

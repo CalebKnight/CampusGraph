@@ -1,0 +1,4 @@
++ isEmpty(): Boolean
++ push(Object): void
++ pop(): Object
++ top(): Object

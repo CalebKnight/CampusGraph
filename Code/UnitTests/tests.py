@@ -5,10 +5,10 @@ from UnitTestGraphFunctions import *
 
 def main():
     print("Test Harnesses for: UnitTests\n")
-    UnitTestGraphFunctions().runAllTests()
+    # UnitTestGraphFunctions().runAllTests()
     # UnitTestDSAGraph().runAllTests()
     # CampusRouteUnitTest.runAllTests(CampusRouteUnitTest())
-    # UnitTestFile.runAllTests(UnitTestFile())
+    UnitTestFile.runAllTests(UnitTestFile())
     
 
 if __name__ == '__main__':

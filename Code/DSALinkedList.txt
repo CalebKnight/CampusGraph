@@ -1,0 +1,10 @@
++ isEmpty(): Boolean
++ isFull(): Boolean
++ insertFirst(Object): void 
++ insertLast(Object): void
++ peekFirst(): Object(Node)
++ peekLast(): Object(Node)
++ removeFirst(): Object
++ removeLast(): Object
++ remove(Object): void
++ getLength(): int

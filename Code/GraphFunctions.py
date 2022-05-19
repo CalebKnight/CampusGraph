@@ -19,6 +19,7 @@ class GraphFunctions:
         self.file = None
         self.graph = None
         self.routes = np.zeros(0, dtype=object)
+        journey = None
 
     def loadFile(self):
         print("Enter the name of the file you would like to load:")
@@ -27,8 +28,9 @@ class GraphFunctions:
             print("File not found. Please try again.")
             fileName = input()
         file = File("Code/{}".format(fileName))
-        file.readFile()
-        self.graph = file.fileContent
+        file.readGraph()
+        self.graph = file.graph
+        self.journey = file.journey
         return(file)
 
     def nodeOperations(self):
@@ -91,20 +93,20 @@ class GraphFunctions:
     def DisplayWorld(self):
         pass
 
-    def enterJourneyDetails():
-        pass
-
-    def generateRoutes(self, startPoint, target, blocked):
+    def enterJourneyDetails(self):
         print("\nPossible targets and start points are:\n")
         for vertex in self.graph.verticesList:
             print(vertex.getLabel())
-        if startPoint == None:
-            startPoint = getInput("start point", "route", "generate")
-        if target == None:
-            target = getInput("target point", "route", "generate")
-        if blocked == None:
-            blocked = isBlockedMenu()
-        
+        startPoint = getInput("start point", "journey", "enter")
+        target = getInput("target point", "journey", "enter")
+        # Lowercase so that Stairs is the same as stairs
+        barriers = getInput("barriers", "journey", "enter").lower()
+        self.journey = CampusRoute(startPoint, target, None, None, barriers)
+
+    def generateRoutes(self):
+        if self.journey == None:
+            self.enterJourneyDetails()
+        startPoint, target, barriers = self.journey.fromBuilding, self.journey.toBuilding, self.journey.barriers
         idx = 0
         routes = np.zeros(self.graph.getEdgeCount(), dtype=object)
         visited = self.graph.depthFirstSearch(startPoint, target)
@@ -112,7 +114,7 @@ class GraphFunctions:
         while currentNode != None:
             # If the current node points to the target edge then we have found a path that follows the main route
             if(currentNode.getValue().getTo() == target):
-                if self._isPathBlocked(currentNode.getValue(), blocked) == False:                  
+                if self._isPathBlocked(currentNode.getValue().getValue(), barriers) == False or len(barriers) < 2:                  
                     routes[idx] = currentNode.getValue()
                     target = currentNode.getValue().getFrom()
                     idx += 1
@@ -120,16 +122,9 @@ class GraphFunctions:
         self.routes = self._invertArray(routes)
         self.routes = self._shuffleArrayDown(self.routes)
 
-    def _isPathBlocked(self, path, blocked):
-        if blocked == 1:
-            if path.getValue().security != "S:":
-                return True
-        elif blocked == 2:
-            if path.getValue().barriers != "B:":
-                return True
-        elif blocked == 3:
-            if path.getValue().barriers != "B:" or path.getValue().security != "S:":
-                return True
+    def _isPathBlocked(self, path, barriers):
+        if path.barriers == barriers or barriers in path.barriers:
+            return True
         return False
             
     def _invertArray(self, array):

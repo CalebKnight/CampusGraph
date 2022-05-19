@@ -1,0 +1,10 @@
++ getLabel(): String
++ getValue(): Object
++ getAdjacent(): Object(LinkedList)
++ addAdjacent(String): void
++ setLabel(String): void
++ setValue(value): void
++ setVisited(): void
++ clearVisited(): void
++ getVisited(): Boolean
++ toString(): String

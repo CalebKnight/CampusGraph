@@ -25,8 +25,6 @@ class UnitTestDSAGraph(TestCase):
         print("TestGetEdge passed")
         self.testGetAdjacent()
         print("TestGetAdjacent passed")
-        self.testGetAdjacentEdge()
-        print("TestGetAdjacentEdge passed")
         self.testRemoveVertex()
         print("TestRemoveVertex passed")
         self.testRemoveEdge()
@@ -89,10 +87,6 @@ class UnitTestDSAGraph(TestCase):
         # self.assertEqual(self.graph.getAdjacent("A").getLength(), 1, "Vertex A is not adjacent to 1 vertex")
         self.assertEqual(self.graph.getAdjacent("B").getLength(), 2, "Vertex B is not adjacent to 1 vertex")
     
-    def testGetAdjacentEdge(self):
-        self.resetGraph()
-        self.assertEqual(self.graph.getAdjacentEdge("A,B").getLabel(), "A,B", "Edge AB is not adjacent to vertex A")
-
     def testRemoveVertex(self):
         self.resetGraph()
         self.graph.removeVertex("A")

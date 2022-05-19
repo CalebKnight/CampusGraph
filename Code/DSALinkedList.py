@@ -96,6 +96,7 @@ class DSALinkedList(DSALinkedListIterator):
                     return
                 currentNode = currentNode.getNext()
             raise Exception("Value not found")
+        
             
                     
     def getLength(self):

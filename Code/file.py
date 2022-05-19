@@ -2,12 +2,14 @@ import os
 from DSAGraph import DSAGraph
 from CampusRoute import CampusRoute
 import sys
-
+import numpy as np
 class File:
     def __init__(self, fileName):
         self.fileName = fileName
-        self.fileContent = None
-    def readFile(self):
+        self.graph = None
+        self.journey = None
+
+    def readGraph(self):
         graph = DSAGraph()
         with open(os.path.join(self.fileName), "r") as file:
             line = file.readline()
@@ -25,7 +27,35 @@ class File:
                     self._processLine(line[0], graph)
                     line = file.readline()
         file.close()
-        self.fileContent = graph
+        self.graph = graph
+
+    def readJourney(self):
+        journey = CampusRoute(None, None, None, None, None)
+        values = np.zeros(5, dtype=object)
+        idx = 0
+        with open(os.path.join(self.fileName), "r") as file:
+            line = file.readline()
+            if(line == "" or line == "\n"):
+                print("File is empty")
+                return
+            while(line):
+                line = line.split("\n")[0]
+                line = line.split(" ")
+                # print(line)
+                if line == "\n" or line == "" or line == None or line == " " or line[0] == '#':
+                    line = file.readline()
+                else:
+                    values[idx] = line[1]
+                    idx += 1
+                    line = file.readline()
+        file.close()
+        journey.fromBuilding = values[0]
+        journey.toBuilding = values[1]
+        journey.distance = values[2]
+        journey.security = values[3]
+        journey.barriers = values[4]
+        self.journey = journey
+        
         
     def writeFileFromGraph(self, graph):
         with open(os.path.join(self.fileName), "w") as file:
@@ -41,7 +71,6 @@ class File:
             graph.addVertex(route.toBuilding)
         if(graph.getEdge(route.fromBuilding + "," + route.toBuilding) == None):
             graph.addEdge(route.fromBuilding , route.toBuilding, route.fromBuilding + "," + route.toBuilding, route)
-        return
 
     def getRouteDirection(self, line):
             if len(line[0].split("<>")) > 1:
@@ -52,8 +81,7 @@ class File:
                 return 2
             else:
                 return 4
-
-
+        
     def _processLine(self, line, graph):
         line = line.split("|")
         direction = self.getRouteDirection(line)
@@ -94,7 +122,7 @@ class File:
         
             
         
-        
+
             
        
         

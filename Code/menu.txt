@@ -1,0 +1,5 @@
++ setFromBuilding(fromBuilding):
++ setToBuilding(toBuilding):
++ setDistance(distance):
++ setSecurity(security):
++ setBarriers(barriers):
