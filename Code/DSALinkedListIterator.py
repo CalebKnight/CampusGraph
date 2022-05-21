@@ -1,4 +1,4 @@
-
+# Iterator only returns value not the node object.
 class DSALinkedListIterator():
     def __iter__(self):
             currNd = self.head

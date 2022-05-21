@@ -4,11 +4,13 @@ from UnitTestFile import *
 from UnitTestGraphFunctions import *
 
 def main():
+    # The test harnesses test each function for expected output. 
+    # They also inherit unit test so that assert equal and other functionality can be easily run inside the class.
     print("Test Harnesses for: UnitTests\n")
     UnitTestGraphFunctions().runAllTests()
     UnitTestDSAGraph().runAllTests()
-    CampusRouteUnitTest.runAllTests(CampusRouteUnitTest())
-    UnitTestFile.runAllTests(UnitTestFile())
+    CampusRouteUnitTest().runAllTests()
+    UnitTestFile().runAllTests()
     
 
 if __name__ == '__main__':

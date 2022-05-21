@@ -4,14 +4,15 @@ class DSALinkedList(DSALinkedListIterator):
     def __init__(self):
         self.head = None
         self.tail = None
+    # Checks if list is empty
     def isEmpty(self):
         if(self.head == None):
             return True
         else:
             return False
-    def isFull(): 
-        pass
-        # Not sure why you would need this as lists can be as big as needed
+
+    # Inserts a value at the start of the linked list. 
+    # Useful for queues specifically the enqueue method.
     def insertFirst(self, value): 
         newNd = DSAListNode(value, None, None)
         if(self.isEmpty() == True):
@@ -24,6 +25,8 @@ class DSALinkedList(DSALinkedListIterator):
         else:
             newNd.setNext(self.head)
             self.head = newNd
+    # Inserts a value at the end of the linked list.
+    # Useful for stacks specifically the push method.
     def insertLast(self, value): 
         newNd = DSAListNode(value, None, None)
         if(self.isEmpty() == True):
@@ -40,11 +43,13 @@ class DSALinkedList(DSALinkedListIterator):
             currentNode.setNext(newNd)
             newNd.setTail(currentNode)
             self.tail = newNd
+    # Gets first value in a linked list. 
     def peekFirst(self): 
         if(self.isEmpty() == True):
             raise Exception("List is empty")
         else:
             return self.head.getValue()
+    # Gets last value in a linked list. 
     def peekLast(self): 
         if(self.isEmpty() == True):
             raise Exception("List is empty")
@@ -53,6 +58,8 @@ class DSALinkedList(DSALinkedListIterator):
             while(currentNode.getNext() != None):
                 currentNode = currentNode.getNext()
             return currentNode.getValue()
+    # Takes the first value in a linked list makes a copy and removes it. 
+    # Useful for queues specifically the dequeue method.
     def removeFirst(self):
         if(self.isEmpty() == True):
             raise Exception("List is empty")
@@ -61,6 +68,8 @@ class DSALinkedList(DSALinkedListIterator):
             currentNode.setTail(None)
             self.head = currentNode.getNext()
             return currentNode.getValue()
+    # Takes the last value in a linked list makes a copy and removes it.
+    # Useful for stacks specifically the pop method.
     def removeLast(self):
         if(self.isEmpty() == True):
             raise Exception("List is empty")
@@ -74,6 +83,10 @@ class DSALinkedList(DSALinkedListIterator):
             self.tail = self.tail.getTail()
             self.tail.setNext(None)
             return copy.getValue()
+    
+    # This method is used to remove values in the middle of a linked list. 
+    # It is useful for removing nodes in a graph.
+    # Can likely replace the other remove methods however keeping them makes the code for queues and stacks more readable and efficient.
     def remove(self, value):
         if(self.isEmpty() == True):
             raise Exception("List is empty")
@@ -97,8 +110,8 @@ class DSALinkedList(DSALinkedListIterator):
                 currentNode = currentNode.getNext()
             raise Exception("Value not found")
         
-            
-                    
+    # Loop through a linked list and count how many values are inside. 
+    # Could be kept track of through a class field of count as an alternative.
     def getLength(self):
         if(self.isEmpty() == True):
             return 0

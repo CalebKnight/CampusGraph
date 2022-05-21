@@ -1,4 +1,5 @@
 import numpy as np
+# Function gets called by all other menus and is standardised to select any options and return an integer that represents user input.
 def menu(options):
     for i in range(len(options)):
         print(i+1, ":", options[i])
@@ -13,6 +14,7 @@ def menu(options):
         except Exception:
             print("Invalid input please input an integer between 1 and {}".format(len(options)))
             
+# All menus here are simply wrappers for a options array to be passed into menu with very little logic beyond that.
 
 def mainMenu():
     options =  np.array([
