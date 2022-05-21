@@ -5,16 +5,18 @@ from CampusRoute import CampusRoute
 from GraphFunctions import *
 def main():
     print("Welcome to the Where Now program!")
-    
-    file = File("Code/map.txt")
-    file.readGraph()
     functions = GraphFunctions()
+    file = File("Code/Maps/{}".format("map.txt"))
+    file.readGraph()
     functions.graph = file.graph
+    file = File("Code/Maps/{}".format("journey.txt"))
+    file.readJourney()
+    functions.journey = file.journey
     choice = ""
     while(choice != 0):
-        choice = MainMenu()
+        choice = mainMenu()
         if choice == 1:
-           functions.loadFile()
+            functions.loadFile()
         elif choice == 2:
             functions.nodeOperations()
         elif choice == 3:
@@ -33,7 +35,6 @@ def main():
             functions.displayRoutes()
         elif choice == 10:
             functions.saveFile()
-            pass
         else:
             print("Invalid choice")
             

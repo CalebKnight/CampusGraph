@@ -15,7 +15,18 @@ class DSAGraph:
     def addEdge(self, fromVertex, toVertex, label, value):
         newEdge = DSAGraphEdge(fromVertex, toVertex, label, value)
         self.edges.insertLast(newEdge)
+        fromVertexFound = False
+        toVertexFound = False
         # Linked list iterator returns value
+        for vertex in self.verticesList:
+            if(vertex.getLabel() == fromVertex):
+                fromVertexFound = True
+            if(vertex.getLabel() == toVertex):
+                toVertexFound = True
+        if(not fromVertexFound):
+            self.addVertex(fromVertex)
+        if(not toVertexFound):
+            self.addVertex(toVertex)
         for vertex in self.verticesList:
             if(vertex.getLabel() == fromVertex and not (self.getVertex(toVertex) in vertex.getAdjacent())):
                 vertex.addAdjacent(self.getVertex(toVertex))
@@ -91,6 +102,8 @@ class DSAGraph:
     #         print(currentNode.toString())
     #     for currentNode in self.edges:
     #         print(currentNode.getLabel())
+
+    # This algorithm scales extremely poorly
     def displayAsMatrix(self):
         matrix = np.zeros((self.getVertexCount(), self.getVertexCount()))
         labels = np.zeros(self.getVertexCount(), dtype=object)
@@ -101,9 +114,9 @@ class DSAGraph:
             toVertex = currentNode.getTo()
             for i in range(self.getVertexCount()):
                 for j in range(self.getVertexCount()):
-                    if(labels[i] == fromVertex.getLabel() and labels[j] == toVertex.getLabel()):
+                    if(labels[i] == fromVertex and labels[j] == toVertex):
                         matrix[i][j] += 1
-                    elif(labels[i] == toVertex.getLabel() and labels[j] == fromVertex.getLabel()):
+                    elif(labels[i] == toVertex and labels[j] == fromVertex):
                         matrix[i][j] += 1
         print("\t\t", end="")
         for idx, i in enumerate(matrix):
@@ -118,15 +131,18 @@ class DSAGraph:
         T = DSAQueue()
         S = DSAStack()
         v = self.getVertex(label)
-        v.setVisited()
-        S.push(v)
-        while(not S.isEmpty()):
-            for w in v.getAdjacent():
-                if(w.getVisited() == False):
-                    T.enqueue(self.getEdge(v.getLabel() + "," + w.getLabel()))
-                    w.setVisited()
-                    S.push(w)
-            v = S.pop()
+        if v != None:
+            v.setVisited()
+            S.push(v)
+            while(not S.isEmpty()):
+                for w in v.getAdjacent():
+                    if(w.getVisited() == False):
+                        edge = self.getEdge(v.getLabel() + "," + w.getLabel())
+                        if edge != None:
+                            T.enqueue(edge)
+                            w.setVisited()
+                            S.push(w)
+                v = S.pop()
         return T
 
     def clearVisited(self):

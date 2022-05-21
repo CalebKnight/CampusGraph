@@ -4,7 +4,7 @@ from CampusRoute import CampusRoute
 import sys
 import numpy as np
 class File:
-    def __init__(self, fileName):
+    def __init__(self, fileName = None):
         self.fileName = fileName
         self.graph = None
         self.journey = None
@@ -111,9 +111,9 @@ class File:
         else:
             delimiter = ">"
         string = edge.fromVertex + delimiter + edge.toVertex + "|"
-        string += "D:{}|".format(str(edge.getValue().distance))
-        string += "S:{}|".format(str(edge.getValue().security))
-        string += "B:{}".format(str(edge.getValue().barriers))
+        string += "{}|".format(str(edge.getValue().distance))
+        string += "{}|".format(str(edge.getValue().security))
+        string += "{}".format(str(edge.getValue().barriers))
         string += "\n"
         return string
             

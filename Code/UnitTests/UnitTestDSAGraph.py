@@ -58,7 +58,7 @@ class UnitTestDSAGraph(TestCase):
     def testAddEdge(self):
         self.resetGraph()
         self.assertEqual(self.graph.edges.getLength(), 3, "Edge count is not 3")
-
+    
     def testHasVertex(self):
         self.resetGraph()
         self.assertEqual(self.graph.hasVertex("A"), True, "Vertex A is not found")

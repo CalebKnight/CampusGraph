@@ -27,7 +27,7 @@ class UnitTestGraphFunctions(TestCase):
     def testGenerateRoutes(self):
         self.createGraph()
         self.addValuesForSearch()
-        self.functions.journey = CampusRoute("A", "C", None, None, "") 
+        self.functions.journey = CampusRoute("A", "C", None, '2', "") 
         self.functions.generateRoutes()
         self.assertEqual(self.functions.routes[0][0].getLabel(), "A,B", "Routes AB Not First Index")
         self.assertEqual(self.functions.routes[0][1].getLabel(), "B,C", "Route BC Not Second Index")

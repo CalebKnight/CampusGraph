@@ -1,5 +1,5 @@
 import numpy as np
-def Menu(options):
+def menu(options):
     for i in range(len(options)):
         print(i+1, ":", options[i])
     print("\n0: Exit\n")
@@ -14,7 +14,7 @@ def Menu(options):
             print("Invalid input please input an integer between 1 and {}".format(len(options)))
             
 
-def MainMenu():
+def mainMenu():
     options =  np.array([
     "Load input file"
     ,"Node operations (find, insert, delete, update)"
@@ -28,15 +28,14 @@ def MainMenu():
     ,"Save network"
     ], dtype=object)
     print("\nMain Menu\n")
-    return(Menu(options))
+    return(menu(options))
     
-def TextInput(text):
+def textInput(text):
         print(text)
         fileName = input()
         return(fileName)
 
-
-def NodeMenu():
+def nodeMenu():
     options = np.array([
     "Find node"
     ,"Insert node"
@@ -44,9 +43,9 @@ def NodeMenu():
     ,"Update node"
     ], dtype=object)
     print("\nHow would you like to edit the node/s?\n")
-    return(Menu(options))
+    return(menu(options))
 
-def EdgeMenu():
+def edgeMenu():
     options = np.array([
     "Find edge"
     ,"Add edge"
@@ -54,17 +53,15 @@ def EdgeMenu():
     ,"Update edge"
     ], dtype=object)
     print("\nHow would you like to edit the edge/s?\n")
-    return(Menu(options))
+    return(menu(options))
 
-
-
-def SaveMenu():
+def saveMenu():
     options = np.array([
     "Save"
     , "Don't save"
     ], dtype=object)
     print("\nWould you like to save the graph?\n")
-    return(Menu(options))
+    return(menu(options))
 
 
  
