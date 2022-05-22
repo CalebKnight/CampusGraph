@@ -14,17 +14,18 @@ class UnitTestStack(TestCase):
         print("Pop Passed")
 
 
-    def resetQueue(self):
+    def resetStack(self):
         self.stack = DSAStack()
 
     def testPush(self):
+        self.resetStack()
         self.stack.push("A")
         self.assertEqual(self.stack.top(), "A", "Push Failed")
         self.stack.push("B")
         self.assertEqual(self.stack.top(), "B", "Push Failed")
 
     def testPop(self):
-        self.resetQueue()
+        self.resetStack()
         self.stack.push("A")
         self.stack.push("B")
         self.stack.push("C")
