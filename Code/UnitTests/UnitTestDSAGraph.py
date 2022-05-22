@@ -141,7 +141,6 @@ class UnitTestDSAGraph(TestCase):
         for vertex in self.graph.verticesList:
             visited = self.graph.depthFirstSearch(vertex.getLabel(), target)
             if visited != None:
-                print(visited)
                 routes[idx] = visited
                 idx += 1
         for route in routes:
