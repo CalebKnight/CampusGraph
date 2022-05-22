@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../CampusGraphs/Code")
+sys.path.append("../CampusGraphs/Code/")
 from file import File
 from unittest import *
 from DSAGraph import *
@@ -34,9 +34,9 @@ class UnitTestFile(TestCase):
 
     def testWriteFile(self):
         self.createGraph()
-        self.file = File("../CampusGraphs/Code/Data/test.txt")
+        self.file = File("Code/Data/test.txt")
         self.file.writeFileFromGraph(self.graph)
-        self.file = File("../CampusGraphs/Code/Data/test.txt")
+        self.file = File("Code/Data/test.txt")
         self.file.readGraph()
         self.assertEqual(self.graph.edges.peekFirst().getFrom(), self.file.graph.edges.peekFirst().getFrom())
         self.assertEqual(self.graph.edges.peekFirst().getTo(), self.file.graph.edges.peekFirst().getTo())
@@ -44,14 +44,14 @@ class UnitTestFile(TestCase):
         
     def testReadGraph(self):
         self.createGraph()
-        self.file = File("../CampusGraphs/Code/Data/test.txt")
+        self.file = File("Code/Data/test.txt")
         self.file.readGraph()
         self.assertEqual(self.graph.edges.peekFirst().getFrom(), self.file.graph.edges.peekFirst().getFrom())
         self.assertEqual(self.graph.edges.peekFirst().getTo(), self.file.graph.edges.peekFirst().getTo())
         # self.assertEqual(self.graph.edges.peekFirst().getValue().distance, self.file.graph.edges.peekFirst().getValue().distance)
 
     def testReadJourney(self):
-        self.file = File("../CampusGraphs/Code/Data/Journey.txt")
+        self.file = File("Code/Data/Journey.txt")
         self.file.readJourney()
         self.assertEqual(self.file.journey.fromBuilding, "314.221.lab")
        

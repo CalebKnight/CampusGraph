@@ -7,7 +7,7 @@
 #  REQUIRES: linkedlists.py - adjust import to match your code
 #*********************************************************************
 import sys 
-sys.path.append("../CampusGraphs/Code")
+sys.path.append("../CampusGraphs/Code/")
 from DSALinkedList import * 
 
 numPassed = 0

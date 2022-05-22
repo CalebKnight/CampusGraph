@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../CampusGraphs/Code")
+sys.path.append("../CampusGraphs/Code/")
 from DSAQueue import *
 from unittest import *
 class UnitTestQueue(TestCase):

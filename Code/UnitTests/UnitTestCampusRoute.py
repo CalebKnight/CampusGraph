@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../CampusGraphs/Code")
+sys.path.append("../CampusGraphs/Code/")
 from CampusRoute import CampusRoute
 from unittest import *
 class CampusRouteUnitTest(TestCase):

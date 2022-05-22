@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../CampusGraphs/Code")
+sys.path.append("../CampusGraphs/Code/")
 from DSAGraph import *
 from unittest import *
 

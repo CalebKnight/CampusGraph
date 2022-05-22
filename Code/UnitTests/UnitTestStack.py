@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../CampusGraphs/Code")
+sys.path.append("../CampusGraphs/Code/")
 from DSAStack import *
 from unittest import *
 class UnitTestStack(TestCase):
