@@ -1,4 +1,4 @@
 
 Path: 1
-
-Distance: 0
+204.1.basement -> 204.1.ext1 , 204.1.ext1 -> 400.1.ext1 , 400.1.ext1 -> 400.219.FF , 
+Distance: 56.0

@@ -21,6 +21,6 @@ class DSAQueue(DSALinkedListIterator):
     # Using DSALinkedList dequeue a value from a linked list
     def dequeue(self):
         if(self.isEmpty() == False):
-            return self.queue.removeLast()
+            return self.queue.removeFirst()
         else:
             raise Exception("Queue is empty")

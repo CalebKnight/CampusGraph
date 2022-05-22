@@ -2,6 +2,8 @@ from UnitTestCampusRoute import *
 from UnitTestDSAGraph import *
 from UnitTestFile import *
 from UnitTestGraphFunctions import *
+from UnitTestQueue import *
+from UnitTestStack import *
 
 def main():
     # The test harnesses test each function for expected output. 
@@ -11,6 +13,8 @@ def main():
     UnitTestDSAGraph().runAllTests()
     CampusRouteUnitTest().runAllTests()
     UnitTestFile().runAllTests()
+    UnitTestQueue().runAllTests()
+    UnitTestStack().runAllTests()
     
 
 if __name__ == '__main__':

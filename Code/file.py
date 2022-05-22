@@ -86,7 +86,7 @@ class File:
                     file.write("\nPath: " + str(i + 1) + "\n")
                     for path in  route:
                         if path != 0:
-                            file.write(path.getLabel().replace(",", " -> "))
+                            file.write(path.getLabel().replace(",", " -> ") + " , ")
                             if path.getValue().distance != '':
                                 distance += float(path.getValue().distance.replace("D:", ""))  
             file.write("\nDistance: " + str(distance))

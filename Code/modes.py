@@ -90,4 +90,8 @@ def silentMode(mapFileName, journeyFileName, outPutName):
     return
 
 def usageInfo():
-    pass
+    print("Usage:")
+    print("Enter interactive mode:")
+    print("python3 whereNow.py -i")
+    print("Enter silent mode:")
+    print("python3 whereNow.py <mapFileName> <journeyFileName> <outputFileName>")

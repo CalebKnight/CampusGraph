@@ -34,7 +34,7 @@ class UnitTestDSAGraph(TestCase):
         self.testUpdateEdge()
         print("TestUpdateEdge passed")
         self.testDepthFirstSearch()
-        print("TestDepthFirstSearch passed")
+        print("TestDepthFirstSearch output^")
         
     def createGraph(self):
         self.graph = DSAGraph()

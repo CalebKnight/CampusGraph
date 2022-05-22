@@ -44,7 +44,7 @@ class GraphFunctions:
             print(vertex.getLabel())
         if choice == 1:
             vertexName = getInput("label", "vertex", "find")
-            self.graph.getVertex(vertexName)
+            print(vertexName, self.graph.getVertex(vertexName).getValue() + " exists")
         elif choice == 2:
             label = getInput("label", "vertex", "insert", True)
             value = getInput("value", "vertex", "insert")
@@ -69,7 +69,7 @@ class GraphFunctions:
         if choice == 1:
             fromBuilding = getInput("label", "first building", "find", True)
             toBuilding = getInput("label", "second building", "find", True)
-            self.graph.getEdge(fromBuilding, toBuilding)
+            print(self.graph.getEdge(fromBuilding + "," + toBuilding).getLabel() + " exists")
         elif choice == 2:
             campusRoute = self.createCampusRoute()
             # To prevent user errors the labels are taken in then a comma is added instead of requiring it to be inputted.
