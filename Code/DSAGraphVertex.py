@@ -1,4 +1,9 @@
 from DSALinkedList import DSALinkedList
+
+# The structure and methods of this class are adapted from pseudocode from Curtin University, Lecture 6, (2022), pg. 53.
+# No code algorithms have been explicitly copied from this source.
+# Some of this code has been previously submitted in a practical by myself.
+
 class DSAGraphVertex:
     def __init__(self, label, value = None):
         self.label = label

@@ -4,7 +4,6 @@ from CampusRoute import CampusRoute
 import sys
 import numpy as np
 import os
-os.path.join(os.getcwd(), "../CampusGraphs/Code")
 class File:
     def __init__(self, fileName = None):
         self.fileName = fileName

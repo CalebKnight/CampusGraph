@@ -1,3 +1,7 @@
+
+# The structure and methods of this class are adapted from pseudocode from Curtin University, Lecture 6, (2022), pg. 56.
+# No code algorithms have been explicitly copied from this source.
+# Some of this code has been previously submitted in a practical by myself.
 class DSAGraphEdge:
     fromVertex = None
     toVertex = None
@@ -24,10 +28,5 @@ class DSAGraphEdge:
         self.fromVertex = fromVertex
     def setTo(self, toVertex):
         self.toVertex = toVertex
-
-    def isDirected(self):
-        if(self.fromVertex == self.toVertex):
-            return False
-        return True
     def toString(self):
         return str(self.fromVertex) + " " + str(self.toVertex) + " " + str(self.label) + " " + str(self.value)

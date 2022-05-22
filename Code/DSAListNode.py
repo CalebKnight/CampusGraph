@@ -1,4 +1,5 @@
 
+# This class has been sourced from a practical submission by myself (Caleb Knight), Practical 4, (2022).
 class DSAListNode:
     def __init__(self, value, next, tail):
         self.value = value

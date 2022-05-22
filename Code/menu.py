@@ -1,4 +1,7 @@
 import numpy as np
+
+# This menu structure is copied from my previous menu in my submitted practicals.
+
 # Function gets called by all other menus and is standardised to select any options and return an integer that represents user input.
 def menu(options):
     for i in range(len(options)):

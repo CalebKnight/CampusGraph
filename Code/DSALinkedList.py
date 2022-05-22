@@ -1,15 +1,20 @@
 from DSAListNode import DSAListNode
 from DSALinkedListIterator import DSALinkedListIterator
+
+# This class has been sourced from a practical submission by myself (Caleb Knight), Practical 4, (2022).
 class DSALinkedList(DSALinkedListIterator): 
     def __init__(self):
         self.head = None
         self.tail = None
     # Checks if list is empty
+    # Would prefer to use two return statements however this violates the coding standard.
     def isEmpty(self):
+        empty = False
         if(self.head == None):
-            return True
+            empty = True
         else:
-            return False
+            empty = False
+        return empty
 
     # Inserts a value at the start of the linked list. 
     # Useful for queues specifically the enqueue method.
@@ -77,12 +82,13 @@ class DSALinkedList(DSALinkedListIterator):
             copy = self.head
             self.head = None
             self.tail = None
-            return copy.getValue()
         else:
             copy = self.tail
             self.tail = self.tail.getTail()
             self.tail.setNext(None)
-            return copy.getValue()
+        return copy.getValue()
+            
+        
     
     # This method is used to remove values in the middle of a linked list. 
     # It is useful for removing nodes in a graph.
@@ -113,13 +119,12 @@ class DSALinkedList(DSALinkedListIterator):
     # Loop through a linked list and count how many values are inside. 
     # Could be kept track of through a class field of count as an alternative.
     def getLength(self):
+        i = 0
         if(self.isEmpty() == True):
-            return 0
+            pass
         else:
-            i = 0
             for currentNode in self:
                 i+=1
-        
         return i
     
 

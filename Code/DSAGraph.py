@@ -5,6 +5,11 @@ from DSAGraphVertex import DSAGraphVertex
 from DSALinkedList import DSALinkedList
 from DSAQueue import DSAQueue
 from DSAStack import DSAStack
+
+# The structure and methods of this class are adapted from pseudocode from Curtin University, Lecture 6, (2022), pg. 52.
+# No code algorithms have been explicitly copied from this source.
+# Some of this code has been previously submitted in a practical by myself.
+
 class DSAGraph:
     def __init__(self):
        self.verticesList = DSALinkedList()
@@ -56,26 +61,29 @@ class DSAGraph:
     # None is returned if it is not found to ensure the function that might call this knows that it does not exist.
     def getVertex(self, label):
         currentNode = self.verticesList.head
+        found = None
         for currentNode in self.verticesList:
             if(currentNode.getLabel() == label):
-                return currentNode
-        return None
+                found = currentNode
+        return found
     # Gets node object from the edges linked list if it has a matching label.
     # None is returned if it is not found to ensure the function that might call this knows that it does not exist.
     def getEdge(self, label):
         currentNode = self.edges.head
+        found = None
         for currentNode in self.edges:
             if(currentNode.getLabel() == label):
-                return currentNode
-        return None
+                found = currentNode
+        return found
     # Returns linked list stored in vertex for adjacent vertices to the inputted vertice.
     # Edges do not have an adjacent function as it is not required for their functionality.
     # None is returned if it is not found to ensure the function that might call this knows that it does not exist.
     def getAdjacent(self, label):
+        found = None
         for currentNode in self.verticesList:
             if(currentNode.getLabel() == label):
-                return currentNode.getAdjacent()
-        return None
+                found = currentNode.getAdjacent()
+        return found
     
     # Remove vertex with matching label from verticesList then search through edges to make sure an edge doesn't contain a vertex with the same label.
     # If the edge does remove it as it points to nothing now.
@@ -162,6 +170,8 @@ class DSAGraph:
         for idx, i in enumerate(matrix):
             print(labels[idx], end="\t")
             print(i)
+
+    # depthFirstSearch is adapted from a pseudocode algorithm provided by Curtin University, "Practical 6", (2022), pg. 3
 
     # Searches through a graph to find a path between two vertices. 
     # This implementation also adds branches leading towards the target and may go further. 

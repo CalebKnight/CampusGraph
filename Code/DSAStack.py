@@ -1,6 +1,7 @@
 import numpy as np
 from DSALinkedList import DSALinkedList 
 from DSALinkedListIterator import DSALinkedListIterator
+# This class has been sourced from a practical submission by myself (Caleb Knight), Practical 4, (2022).
 class DSAStack(DSALinkedListIterator): 
     def __init__(self):
         self.stack = DSALinkedList()
